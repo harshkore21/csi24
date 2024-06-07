@@ -1,6 +1,6 @@
-# Azure Container Instance: Create and Deploy a Simple Docker Application
+# Azure Container Instance: Create and Deploy a Simple Docker Application 🎁
 
-## Table of Contents
+## Table of Contents 📋
 1. [Create an Azure Account](#create-an-azure-account)
 2. [Create an Azure Container Instance](#create-an-azure-container-instance)
 3. [Deploy a Simple Docker Application](#deploy-a-simple-docker-application)
@@ -8,7 +8,7 @@
 5. [Test Functionality](#test-functionality)
 6. [Additional Resources](#additional-resources)
 
-## Create an Azure Container Instance
+## Create an Azure Container Instance 🖥️
 
 1. **Navigate to the Azure Portal**:
    - Go to [portal.azure.com](https://portal.azure.com/) and sign in with your Azure account.
@@ -27,7 +27,7 @@
    - Networking: Choose a DNS name label to create a FQDN (e.g., mycontainerinstance).
    - Click "Review + create" and then "Create".
 
-## Deploy a Simple Docker Application
+## Deploy a Simple Docker Application 🚀
 
 1. **Deploy an Nginx Container**:
    - If you selected Docker Hub as the image source, you can deploy a simple Nginx web server:
@@ -46,7 +46,7 @@
 3. **Use the Custom Image in Azure Container Instance**:
    - In the Image field, enter `<harsh>/myapp:latest`.
 
-## Create Container Groups
+## Create Container Groups 🗃️
 
 1. **Navigate to Container Groups**:
    - In the Azure portal, search for "Container Instances".
@@ -58,7 +58,7 @@
    - Networking: Configure networking settings as needed.
    - Click "Review + create" and then "Create".
 
-## Test Functionality
+## Test Functionality 🔧
 
 1. **Verify Container Instance**:
    - Once the container instance is created, navigate to its overview page in the Azure portal.
