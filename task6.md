@@ -1,6 +1,6 @@
-# Azure Virtual Machines: Deployment and Access Guide
+# Azure Virtual Machines: Deployment and Access Guide ☁️
 
-## Table of Contents
+## Table of Contents 🔗
 1. [Create an Azure Account](#create-an-azure-account)
 2. [Create a Resource Group](#create-a-resource-group)
 3. [Create a Virtual Network](#create-a-virtual-network)
@@ -10,7 +10,7 @@
 7. [Access the Windows VM using RDP](#access-the-windows-vm-using-rdp)
 8. [Additional Resources](#additional-resources)
 
-## Create a Resource Group
+## Create a Resource Group 🗃️
 
 1. **Navigate to the Azure Portal**:
    - Go to [portal.azure.com](https://portal.azure.com/) and sign in with your Azure account.
@@ -21,7 +21,7 @@
    - Provide a name for your resource group and select a region (e.g., East US).
    - Click "Review + create" and then "Create".
 
-## Create a Virtual Network
+## Create a Virtual Network 🌐
 
 1. **Navigate to Virtual Networks**:
    - Click on "Virtual networks" in the left-hand menu.
@@ -33,7 +33,7 @@
    - Security: Default settings are fine for now.
    - Review + create: Click "Review + create" and then "Create".
 
-## Deploy a Linux Virtual Machine
+## Deploy a Linux Virtual Machine 🖥️
 
 1. **Navigate to Virtual Machines**:
    - Click on "Virtual machines" in the left-hand menu.
@@ -49,7 +49,7 @@
    - Management, Advanced, and Tags: Default settings are fine.
    - Review + create: Click "Review + create" and then "Create".
 
-## Access the Linux VM using SSH
+## Access the Linux VM using SSH 📡
 
 1. **Find the Public IP Address**:
    - Go to your VM’s overview page in the Azure portal.
@@ -59,7 +59,7 @@
    - Open a terminal on your local machine.
    - Connect using SSH: `ssh azureuser@192.168.1.1`.
 
-## Deploy a Windows Virtual Machine
+## Deploy a Windows Virtual Machine 💻
 
 1. **Navigate to Virtual Machines**:
    - Click on "Virtual machines" in the left-hand menu.
@@ -75,7 +75,7 @@
    - Management, Advanced, and Tags: Default settings are fine.
    - Review + create: Click "Review + create" and then "Create".
 
-## Access the Windows VM using RDP
+## Access the Windows VM using RDP 📶
 
 1. **Find the Public IP Address**:
    - Go to your VM’s overview page in the Azure portal.
