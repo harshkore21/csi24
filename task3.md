@@ -1,81 +1,68 @@
-# Azure App Service: Create and Deploy a Web App
+# Azure Container Registry: Create and Use a Container Image 🖼️
 
-## Table of Contents
+## Table of Contents 📋
 1. [Create an Azure Account](#create-an-azure-account)
-2. [Create an App Service Plan](#create-an-app-service-plan)
-3. [Provision a Web App in the App Service Plan](#provision-a-web-app-in-the-app-service-plan)
-4. [Deploy a Simple Welcome Page](#deploy-a-simple-welcome-page)
+2. [Create an Azure Container Registry (ACR)](#create-an-azure-container-registry-acr)
+3. [Push an Image to ACR](#push-an-image-to-acr)
+4. [Create a Container Instance from ACR Image](#create-a-container-instance-from-acr-image)
 5. [Additional Resources](#additional-resources)
 
-## Create an App Service Plan
+## Create an Azure Container Registry (ACR) 🛠️
 
 1. **Navigate to the Azure Portal**:
    - Go to [portal.azure.com](https://portal.azure.com/) and sign in with your Azure account.
    
-2. **Create an App Service Plan**:
+2. **Create an ACR**:
    - In the Azure portal, click on "Create a resource" in the left-hand menu.
-   - Search for "App Service Plan" and select it.
+   - Search for "Container Registry" and select it.
    - Click "Create".
 
-3. **Configure the App Service Plan**:
-   - Basics: Select your subscription and resource group. Provide a name for your App Service Plan (e.g., MyAppServicePlan).
-   - Operating System: Choose Windows or Linux based on your preference.
+3. **Configure the ACR**:
+   - Basics: Select your subscription, resource group, and give your ACR a name (e.g., MyContainerRegistry).
    - Region: Select a region close to your users (e.g., East US).
-   - Pricing tier: Click on "Change size" and select a pricing tier based on your needs. The "Free" tier (F1) is suitable for testing.
+   - SKU: Select a SKU based on your needs (e.g., Basic).
    - Click "Review + create" and then "Create".
 
-## Provision a Web App in the App Service Plan
+## Push an Image to ACR 🛰️
 
-1. **Navigate to the Web App**:
-   - In the Azure portal, click on "Create a resource" in the left-hand menu.
-   - Search for "Web App" and select it.
-   - Click "Create".
+1. **Install Docker**:
+   - Ensure Docker is installed on your local machine. If not, download and install it from the [Docker website](https://www.docker.com/products/docker-desktop).
 
-2. **Configure the Web App**:
-   - Basics: Select your subscription, resource group, and give your Web App a name (e.g., MyWebApp12345). This name must be unique across all of Azure.
-   - Publish: Choose "Code".
-   - Runtime stack: Select the runtime stack you prefer (e.g., .NET, Node.js, PHP).
-   - Operating System: Choose the same OS you selected for your App Service Plan.
-   - Region: Select the same region as your App Service Plan.
-   - App Service Plan: Click "Create new" and select the existing App Service Plan you created earlier.
-   - Click "Review + create" and then "Create".
-
-## Deploy a Simple Welcome Page
-
-1. **Navigate to the Deployment Center**:
-   - Go to your Web App's overview page in the Azure portal.
-   - In the left-hand menu, under "Deployment", click on "Deployment Center".
-
-2. **Configure Deployment**:
-   - Select your source. For simplicity, choose "Local Git" and follow the instructions to set up a local Git repository.
-   - Alternatively, you can choose "GitHub" if you have your code in a GitHub repository.
-
-3. **Clone the Repository and Add Code**:
-   - Open a terminal on your local machine.
-   - Clone the repository using the provided URL: `git clone https://github.com/harshkore21/git-repo`
-   - Navigate to the cloned directory: `cd https://github.com/harshkore21/git-repo`
-
-4. **Create a Simple Welcome Page**:
-   - Create an `index.html` file with the following content:
-
-     ```html
-     <!DOCTYPE html>
-     <html>
-     <head>
-         <title>Welcome to My Web App</title>
-     </head>
-     <body>
-         <h1>Welcome to My Web App</h1>
-         <p>This is a simple welcome page.</p>
-     </body>
-     </html>
+2. **Login to ACR**:
+   - Open a terminal and log in to your ACR: `az acr login --name MyContainerRegistry`
+   
+3. **Tag Your Image**:
+   - Assuming you have a Docker image locally (e.g., `myapp:latest`), tag it for ACR:
+     ```sh
+     docker tag myapp:latest MyContainerRegistry.azurecr.io/myapp:latest
      ```
 
-5. **Push the Changes to Azure**:
-   - Add the file to the repository: `git add index.html`
-   - Commit the changes: `git commit -m "Add welcome page"`
-   - Push the changes to the remote repository: `git push`
+4. **Push the Image to ACR**:
+   - Push the tagged image to your ACR:
+     ```sh
+     docker push MyContainerRegistry.azurecr.io/myapp:latest
+     ```
 
-6. **Verify the Deployment**:
-   - Once the deployment is complete, navigate to the URL of your Web App (e.g., `https://hkwelcome.azurewebsites.net`).
-   - You should see your simple welcome page.
+## Create a Container Instance from ACR Image 📡
+
+1. **Navigate to the Azure Portal**:
+   - Go to [portal.azure.com](https://portal.azure.com/) and sign in with your Azure account.
+   
+2. **Create a Container Instance**:
+   - In the Azure portal, click on "Create a resource" in the left-hand menu.
+   - Search for "Container Instance" and select it.
+   - Click "Create".
+
+3. **Configure the Container Instance**:
+   - Basics: Select your subscription, resource group, and give your container a name (e.g., MyContainerInstance).
+   - Region: Select the region where your ACR is located.
+   - Image source: Select "Azure Container Registry".
+   - Registry: Select your ACR (e.g., MyContainerRegistry).
+   - Image: Enter the image name (e.g., MyContainerRegistry.azurecr.io/myapp:latest).
+   - Size: Choose a size for your container instance.
+   - Click "Review + create" and then "Create".
+
+4. **Verify the Container Instance**:
+   - Once the container instance is created, navigate to its overview page in the Azure portal.
+   - Note the FQDN (Fully Qualified Domain Name) of your container instance.
+   - Open a browser and navigate to the FQDN to see your application running.
