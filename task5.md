@@ -1,4 +1,4 @@
-# Azure Container Instance: Create and Deploy a Simple Docker Application 🎁
+# Azure Container Instance: Create and Deploy a Simple Docker Application 📦
 
 ## Table of Contents 📋
 1. [Create an Azure Account](#create-an-azure-account)
