@@ -52,8 +52,8 @@
 
 3. **Clone the Repository and Add Code**:
    - Open a terminal on your local machine.
-   - Clone the repository using the provided URL: `git clone <repository-url>`
-   - Navigate to the cloned directory: `cd <repository-directory>`
+   - Clone the repository using the provided URL: `git clone https://github.com/harshkore21/git-repo`
+   - Navigate to the cloned directory: `cd https://github.com/harshkore21/git-repo`
 
 4. **Create a Simple Welcome Page**:
    - Create an `index.html` file with the following content:
