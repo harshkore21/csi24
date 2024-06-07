@@ -39,12 +39,12 @@
 2. **Push Your Custom Docker Application to Docker Hub**:
    - If you have a custom Docker application, build and push it to Docker Hub:
      ```sh
-     docker build -t <your-dockerhub-username>/myapp:latest .
-     docker push <your-dockerhub-username>/myapp:latest
+     docker build -t harsh/myapp:latest .
+     docker push harsh/myapp:latest
      ```
 
 3. **Use the Custom Image in Azure Container Instance**:
-   - In the Image field, enter `<harsh>/myapp:latest`.
+   - In the Image field, enter `hk/myapp:latest`.
 
 ## Create Container Groups 🗃️
 
