@@ -1,87 +1,81 @@
-# Azure Virtual Machines: Deployment and Access Guide
+# Azure App Service: Create and Deploy a Web App 📖
 
-## Table of Contents
+## Table of Contents 📋
 1. [Create an Azure Account](#create-an-azure-account)
-2. [Create a Resource Group](#create-a-resource-group)
-3. [Create a Virtual Network](#create-a-virtual-network)
-4. [Deploy a Linux Virtual Machine](#deploy-a-linux-virtual-machine)
-5. [Access the Linux VM using SSH](#access-the-linux-vm-using-ssh)
-6. [Deploy a Windows Virtual Machine](#deploy-a-windows-virtual-machine)
-7. [Access the Windows VM using RDP](#access-the-windows-vm-using-rdp)
-8. [Additional Resources](#additional-resources)
+2. [Create an App Service Plan](#create-an-app-service-plan)
+3. [Provision a Web App in the App Service Plan](#provision-a-web-app-in-the-app-service-plan)
+4. [Deploy a Simple Welcome Page](#deploy-a-simple-welcome-page)
+5. [Additional Resources](#additional-resources)
 
-## Create a Resource Group
+## Create an App Service Plan 👨‍💻
 
 1. **Navigate to the Azure Portal**:
    - Go to [portal.azure.com](https://portal.azure.com/) and sign in with your Azure account.
    
-2. **Create Resource Group**:
-   - In the Azure portal, click on "Resource groups" on the left-hand menu.
-   - Click "Create" to start creating a new resource group.
-   - Provide a name for your resource group and select a region (e.g., East US).
+2. **Create an App Service Plan**:
+   - In the Azure portal, click on "Create a resource" in the left-hand menu.
+   - Search for "App Service Plan" and select it.
+   - Click "Create".
+
+3. **Configure the App Service Plan**:
+   - Basics: Select your subscription and resource group. Provide a name for your App Service Plan (e.g., MyAppServicePlan).
+   - Operating System: Choose Windows or Linux based on your preference.
+   - Region: Select a region close to your users (e.g., East US).
+   - Pricing tier: Click on "Change size" and select a pricing tier based on your needs. The "Free" tier (F1) is suitable for testing.
    - Click "Review + create" and then "Create".
 
-## Create a Virtual Network
+## Provision a Web App in the App Service Plan 🔗
 
-1. **Navigate to Virtual Networks**:
-   - Click on "Virtual networks" in the left-hand menu.
-   - Click "Create" to start the process.
+1. **Navigate to the Web App**:
+   - In the Azure portal, click on "Create a resource" in the left-hand menu.
+   - Search for "Web App" and select it.
+   - Click "Create".
 
-2. **Configure the Virtual Network**:
-   - Basics: Select your subscription, resource group, and give your VNet a name (e.g., MyVNet). Choose a region.
-   - IP Addresses: Define the address space (e.g., 10.0.0.0/16) and add subnets (e.g., 10.0.1.0/24).
-   - Security: Default settings are fine for now.
-   - Review + create: Click "Review + create" and then "Create".
+2. **Configure the Web App**:
+   - Basics: Select your subscription, resource group, and give your Web App a name (e.g., MyWebApp12345). This name must be unique across all of Azure.
+   - Publish: Choose "Code".
+   - Runtime stack: Select the runtime stack you prefer (e.g., .NET, Node.js, PHP).
+   - Operating System: Choose the same OS you selected for your App Service Plan.
+   - Region: Select the same region as your App Service Plan.
+   - App Service Plan: Click "Create new" and select the existing App Service Plan you created earlier.
+   - Click "Review + create" and then "Create".
 
-## Deploy a Linux Virtual Machine
+## Deploy a Simple Welcome Page ⚙️
 
-1. **Navigate to Virtual Machines**:
-   - Click on "Virtual machines" in the left-hand menu.
-   - Click "Create" and then "Azure virtual machine".
+1. **Navigate to the Deployment Center**:
+   - Go to your Web App's overview page in the Azure portal.
+   - In the left-hand menu, under "Deployment", click on "Deployment Center".
 
-2. **Configure the Linux VM**:
-   - Basics: Select your subscription, resource group, and give your VM a name (e.g., MyLinuxVM). Choose the region where your VNet is located.
-   - Image: Choose "Ubuntu Server 20.04 LTS".
-   - Size: Select a VM size (e.g., Standard_B1s).
-   - Administrator account: Choose SSH public key, enter your username (e.g., azureuser), and paste your SSH public key.
-   - Disks: Use the default settings.
-   - Networking: Select your VNet and subnet created earlier. Make sure to allow SSH (port 22).
-   - Management, Advanced, and Tags: Default settings are fine.
-   - Review + create: Click "Review + create" and then "Create".
+2. **Configure Deployment**:
+   - Select your source. For simplicity, choose "Local Git" and follow the instructions to set up a local Git repository.
+   - Alternatively, you can choose "GitHub" if you have your code in a GitHub repository.
 
-## Access the Linux VM using SSH
-
-1. **Find the Public IP Address**:
-   - Go to your VM’s overview page in the Azure portal.
-   - Note the public IP address.
-
-2. **Connect via SSH**:
+3. **Clone the Repository and Add Code**:
    - Open a terminal on your local machine.
-   - Connect using SSH: `ssh azureuser@192.168.1.1`.
+   - Clone the repository using the provided URL: `git clone <repository-url>`
+   - Navigate to the cloned directory: `cd <repository-directory>`
 
-## Deploy a Windows Virtual Machine
+4. **Create a Simple Welcome Page**:
+   - Create an `index.html` file with the following content:
 
-1. **Navigate to Virtual Machines**:
-   - Click on "Virtual machines" in the left-hand menu.
-   - Click "Create" and then "Azure virtual machine".
+     ```html
+     <!DOCTYPE html>
+     <html>
+     <head>
+         <title>Welcome to My Web App</title>
+     </head>
+     <body>
+         <h1>Welcome to My Web App</h1>
+         <p>This is a simple welcome page.</p>
+     </body>
+     </html>
+     ```
 
-2. **Configure the Windows VM**:
-   - Basics: Select your subscription, resource group, and give your VM a name (e.g., MyWindowsVM). Choose the region where your VNet is located.
-   - Image: Choose "Windows Server 2019 Datacenter".
-   - Size: Select a VM size (e.g., Standard_B2s).
-   - Administrator account: Enter a username and password.
-   - Disks: Use the default settings.
-   - Networking: Select your VNet and subnet created earlier. Make sure to allow RDP (port 3389).
-   - Management, Advanced, and Tags: Default settings are fine.
-   - Review + create: Click "Review + create" and then "Create".
+5. **Push the Changes to Azure**:
+   - Add the file to the repository: `git add index.html`
+   - Commit the changes: `git commit -m "Add welcome page"`
+   - Push the changes to the remote repository: `git push`
 
-## Access the Windows VM using RDP
-
-1. **Find the Public IP Address**:
-   - Go to your VM’s overview page in the Azure portal.
-   - Note the public IP address.
-
-2. **Connect via RDP**:
-   - On your local Windows machine, open Remote Desktop Connection (RDP).
-   - Enter the public IP address of your Windows VM.
-   - Enter the username and password you specified during VM creation.
+6. **Verify the Deployment**:
+   - Once the deployment is complete, navigate to the URL of your Web App (e.g., `https://MyWebApp12345.azurewebsites.net`).
+   - You should see your simple welcome page.
